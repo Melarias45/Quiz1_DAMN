@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Quiz Melisa Arias 6C
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container" class="ion text-center">
+
+    <h2>Lista de eventos</h2><br><br>
+    <!--Botones/Inputs-->
+    <ion-label>Agregar nuevo evento</ion-label><br><br>
+    <input #nameInput type="text" placeholder="Nombre del evento"><br>
+
+    <ion-label>Fecha de inicio: </ion-label>
+    <input #startdateInput type="date"><br>
+
+    <ion-label>Fecha de finalizacion: </ion-label>
+    <input #endateInput type="date"><br>
+
+    <ion-label>Ubicacion: </ion-label>
+    <input #locationInput type="text" placeholder="Ubicacion del evento"><br>
+
+    <ion-label>Ingresa el nombre del encargado del evento: </ion-label>
+    <input #userInput type="text" placeholder="Nombre del encargado"><br>
+
+    <ion-label>Ingresa el telefono del encargado: </ion-label>
+    <input #phoneInput type="string" placeholder="Telefono del encargado">
+    <!--Si me queda tiempo y se como hacerlo, agregar validacion para que el telefono tenga un num minimo de caracteres-->
+
+    <!--Confirmacion evento-->
+
+    <br>
+    <button
+      (click)="addItem(nameInput.value, startdateInput.value, endateInput.value, locationInput.value, userInput.value, phoneInput.value); nameInput.value=''; startdateInput.value=''; endateInput.value=''; locationInput.value=''; userInput.value=''; phoneInput.value=''">Agregar</button>
+
+    <!--inicia la tabla-->
+    <table border="1" style="margin: 10px; width: 100%; text-align: center;">
+      <thead>
+        <tr> <!--Titulos-->
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Fecha de inicio</th>
+          <th>Fecha de finalizacion</th>
+          <th>Ubicacion</th>
+          <th>Encargado</th>
+          <th>Telefono</th>
+          <th>Confirmacion</th>
+          <th>Acciones</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of items"> <!--Listar items-->
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.startdate }}</td>
+          <td>{{ item.endate }}</td>
+          <td>{{ item.location }}</td>
+          <td>{{ item.user }}</td>
+          <td>{{ item.phone }}</td>
+          <td>
+            <input type="checkbox" [checked]="item.completed" (change)="toggleCompleted(item.id)">
+          </td>
+          <td>
+            <button (click)="removeItem(item.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>
