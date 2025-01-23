@@ -28,7 +28,7 @@ export class HomePage {
         completed: false //Por defecto no esta completado.
       });
     } else {
-      alert('El nombre y la fecha no pueden estar vacios');
+      alert('Los campos no pueden estar vacios ;9');
     }
   }
 
